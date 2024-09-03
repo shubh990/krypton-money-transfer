@@ -1,0 +1,35 @@
+spring:
+  application:
+    name : account-money-transfer
+  datasource:
+    name:
+    url: jdbc:h2:mem:krypton
+    driver-class-name: org.h2.Driver
+    username: krypton
+    password:
+    platform: h2
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # or create, create-drop, validate
+    database-platform: org.hibernate.dialect.H2Dialect
+
+server:
+  port: 8080
+
+feign:
+  client:
+    account-service:
+      baseUrl: "localhost:8085/api/v1"
+      connectionTimeout: 2000
+      socketTimeout: 2000
+
+    core-money-transfer-service:
+      baseUrl: "localhost:8085/api/v1/local"
+      connectionTimeout: 2000
+      socketTimeout: 2000
+
+
