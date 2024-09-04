@@ -6,6 +6,9 @@ The microservice is also integrated with two other services to serve as the data
 1. Account-Service to fetch Account data.
 2. Core-Money-Transfer to transfer money to destination account.
 
+## Architecture
+![Architecture](https://github.com/user-attachments/assets/26dbd820-f93d-40d8-a8d6-c62839eb5ead)
+
 ## Technologies Used
 1. Java 17
 2. Spring Boot
