@@ -8,6 +8,8 @@ import com.krypton.account_money_transfer.dataaccess.coremoneytransfer.data.Cred
 import com.krypton.account_money_transfer.dataaccess.coremoneytransfer.data.DebitLeg;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class CoreMoneyTransferImpl {
 
@@ -24,7 +26,7 @@ public class CoreMoneyTransferImpl {
     public CoreMoneyTransferRequest getRequest(MoneyTransferRequest request, String transactionNumber) {
         DebitLeg debitLeg = new DebitLeg(
                 request.getSourceAccount(),
-                request.getAmount(),
+                new BigDecimal(request.getAmount()),
                 request.getCurrency()
         );
         CreditLeg creditLeg = new CreditLeg(request.getDestinationAccount());
