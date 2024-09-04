@@ -24,13 +24,14 @@ public class AccountDetails {
     }
 
     public boolean validateAccountTransfer(AccountServiceRequest request, AccountServiceResponse response) {
-        if (response.getBalance().compareTo(request.getAmount()) < 0) {
+
+        if (!response.getCurrency().equals(request.getCurrency())) {
+            throw new MoneyTransferFailure(FailureReasons.INVALID_CURRENCY, request.getTransactionNumber());
+        } else if (response.getBalance().compareTo(request.getAmount()) < 0) {
             throw new MoneyTransferFailure(FailureReasons.INSUFFICIENT_AMOUNT, request.getTransactionNumber());
         } else if (response.getLimits().getDaily().compareTo(request.getAmount()) < 0 ||
                     response.getLimits().getMonthly().compareTo(request.getAmount()) < 0) {
             throw new MoneyTransferFailure(FailureReasons.DAILY_LIMIT, request.getTransactionNumber());
-        } else if (!response.getCurrency().equals(request.getCurrency())) {
-            throw new MoneyTransferFailure(FailureReasons.INVALID_CURRENCY, request.getTransactionNumber());
         }
         return true;
     }
