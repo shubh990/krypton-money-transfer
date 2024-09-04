@@ -96,3 +96,7 @@ Sample Response Failure
     }
 }
 ```
+
+## To Do
+1. Test cases
+2. Authentication (Future Scope)
