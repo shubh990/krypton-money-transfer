@@ -5,23 +5,22 @@ import com.krypton.account_money_transfer.dataaccess.accountservice.data.Account
 import com.krypton.account_money_transfer.dataaccess.accountservice.data.AccountServiceResponse;
 import com.krypton.account_money_transfer.exception.MoneyTransferFailure;
 import com.krypton.account_money_transfer.exception.FailureReasons;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AccountDetails {
 
-    @Autowired
-    AccountServiceConnector accountServiceConnector;
+
+    private final AccountServiceConnector accountServiceConnector;
+
+    public AccountDetails(AccountServiceConnector accountServiceConnector) {
+        this.accountServiceConnector = accountServiceConnector;
+    }
 
     public boolean getAccountDetails(AccountServiceRequest request) {
         AccountServiceResponse response =
                     accountServiceConnector.getAccountDetails(request);
-        if (response.equals(HttpStatusCode.valueOf(400))) {
-
-        }
-            return validateAccountTransfer(request, response);
+        return validateAccountTransfer(request, response);
     }
 
     public boolean validateAccountTransfer(AccountServiceRequest request, AccountServiceResponse response) {

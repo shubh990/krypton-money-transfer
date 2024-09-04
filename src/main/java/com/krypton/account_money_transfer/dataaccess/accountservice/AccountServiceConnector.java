@@ -4,16 +4,17 @@ import com.krypton.account_money_transfer.dataaccess.accountservice.data.Account
 import com.krypton.account_money_transfer.dataaccess.accountservice.data.AccountServiceResponse;
 import com.krypton.account_money_transfer.exception.MoneyTransferFailure;
 import com.krypton.account_money_transfer.exception.FailureReasons;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AccountServiceConnector {
 
-    @Autowired
-    private AccountServiceClient client;
+    private final AccountServiceClient client;
+
+    public AccountServiceConnector(AccountServiceClient client) {
+        this.client = client;
+    }
 
     public AccountServiceResponse getAccountDetails(AccountServiceRequest request) {
         try {

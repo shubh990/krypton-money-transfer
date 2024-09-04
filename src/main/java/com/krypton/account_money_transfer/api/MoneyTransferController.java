@@ -7,7 +7,6 @@ import com.krypton.account_money_transfer.repository.service.SaveTransaction;
 import com.krypton.account_money_transfer.service.AccountDetails;
 import com.krypton.account_money_transfer.service.CoreMoneyTransferImpl;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +18,15 @@ import java.math.BigDecimal;
 @RequestMapping(value = "/api/v1", produces = "application/json")
 public class MoneyTransferController {
 
-    @Autowired
-    AccountDetails accountDetails;
-    @Autowired
-    CoreMoneyTransferImpl coreMoneyTransferImpl;
+    private final AccountDetails accountDetails;
+    private final CoreMoneyTransferImpl coreMoneyTransferImpl;
+    private final SaveTransaction saveTransaction;
 
-    @Autowired
-    SaveTransaction saveTransaction;
+    public MoneyTransferController(AccountDetails accountDetails, CoreMoneyTransferImpl coreMoneyTransferImpl, SaveTransaction saveTransaction) {
+        this.accountDetails = accountDetails;
+        this.coreMoneyTransferImpl = coreMoneyTransferImpl;
+        this.saveTransaction = saveTransaction;
+    }
 
     @PostMapping(value = "/transfer")
     public MoneyTransferResponse moneyTransfer(@Valid @RequestBody MoneyTransferRequest request) {

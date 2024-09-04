@@ -4,7 +4,6 @@ import com.krypton.account_money_transfer.api.data.GetMoneyTransferResponse;
 import com.krypton.account_money_transfer.api.data.MoneyTransferResponse;
 import com.krypton.account_money_transfer.api.data.Status;
 import com.krypton.account_money_transfer.repository.service.SaveTransaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,8 +14,11 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @Autowired
-    SaveTransaction saveTransaction;
+    private final SaveTransaction saveTransaction;
+
+    public GlobalExceptionHandler(SaveTransaction saveTransaction) {
+        this.saveTransaction = saveTransaction;
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
