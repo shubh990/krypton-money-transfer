@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface AccountServiceClient {
 
     @GetMapping("/accounts/{cif}/{accountNumber}")
-    public ResponseEntity<AccountServiceResponse> getAccountDetails(@PathVariable("cif") String cif,
+    ResponseEntity<AccountServiceResponse> getAccountDetails(@PathVariable("cif") String cif,
                                                               @PathVariable("accountNumber") String accountNumber
     );
 }

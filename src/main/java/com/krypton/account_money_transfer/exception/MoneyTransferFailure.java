@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public class MoneyTransferFailure extends RuntimeException{
 
-    private FailureReasons failureReasons;
-    private String transactionNumber;
+    private final FailureReasons failureReasons;
+    private final String transactionNumber;
 
     public MoneyTransferFailure(FailureReasons failureReasons, String transactionNumber) {
         super();

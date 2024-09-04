@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CoreMoneyTransferServiceClient {
 
     @PostMapping()
-    public ResponseEntity<CoreMoneyTransferResponse> coreMoneyTransfer(@RequestBody CoreMoneyTransferRequest request);
+    ResponseEntity<CoreMoneyTransferResponse> coreMoneyTransfer(@RequestBody CoreMoneyTransferRequest request);
 }
