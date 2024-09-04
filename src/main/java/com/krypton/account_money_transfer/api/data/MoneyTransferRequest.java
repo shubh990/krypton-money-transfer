@@ -9,25 +9,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class MoneyTransferRequest {
 
-    @NotBlank
+    @NotBlank(message = "cif is blank")
     @Size(min = 10, max = 10, message = "Invalid CIFs")
     private String cif;
 
-    @NotBlank
+    @NotBlank(message = "sourceAccount is blank")
     @Size(min = 11, max = 11, message = "Invalid sourceAccount")
     private String sourceAccount;
 
-    @NotBlank
+    @NotBlank(message = "destinationAccount is blank")
     @Size(min = 24, max = 24, message = "Invalid destinationAccount")
     private String destinationAccount;
 
-    @NotBlank
+    @NotBlank(message = "amount is blank")
     private String amount;
 
-    @NotBlank
+    @NotBlank(message = "currency is blank")
     private String currency;
 
-    @NotBlank
+    @NotBlank(message = "reason  is blank")
     private String reason;
 
     @Size(max = 10, message = "Notes size exceeded")

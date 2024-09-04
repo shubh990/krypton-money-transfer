@@ -45,7 +45,8 @@ public class MoneyTransferController {
         MoneyTransferResponse moneyTransferResponse;
         GetMoneyTransferResponse getMoneyTransferResponse = new GetMoneyTransferResponse();
         if (null != coreMoneyTransferResponse) {
-            moneyTransferResponse = (coreMoneyTransferResponse.getStatus().equals(Status.CREDITED.toString())) ?
+            moneyTransferResponse = (coreMoneyTransferResponse.getStatus().equals(Status.CREDITED.toString()) ||
+                    coreMoneyTransferResponse.getStatus().equals(Status.DEBITED.toString())) ?
                     getMoneyTransferResponse.getMoneyTransferResponse(Status.SUCCESS, transactionNumber) :
                     getMoneyTransferResponse.getMoneyTransferResponse(Status.FAILED, transactionNumber);
         } else {

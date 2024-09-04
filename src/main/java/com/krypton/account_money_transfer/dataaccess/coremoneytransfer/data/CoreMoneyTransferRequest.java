@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class CoreMoneyTransferRequest {
     private DebitLeg debitLeg;
-    private String creditAccount;
+    private CreditLeg creditLeg;
     private String reason;
     private String notes;
     private String transactionNumber;
